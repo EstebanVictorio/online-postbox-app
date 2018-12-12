@@ -1,7 +1,7 @@
 import {delay} from 'redux-saga';
 import {all, takeEvery, put, select} from 'redux-saga/effects';
 import {addLatest} from './Actions';
-
+import {fetchMessages} from 'Utils/Helpers';
 const sMessages = state => state.messages;
 
 function * printStartSagaMessage(){
@@ -9,8 +9,14 @@ function * printStartSagaMessage(){
 }
 
 function * addMessagesAsync(){
-  yield delay(3000);
-  yield put(addLatest([{text:'msg 1'},{text:'msg 2'},{text:'msg 3'}]));
+  let jsonResponse = yield fetchMessages()
+    .then(response => response.json())
+    .then(json => json);
+  if(Array.isArray(jsonResponse.messages)){
+    yield put(addLatest(jsonResponse.messages));
+  }else{
+    console.log('Error: no array');
+  }
 }
 
 function * watchAddMessagesAsync(){
