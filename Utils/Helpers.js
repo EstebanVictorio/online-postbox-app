@@ -22,7 +22,7 @@ const getNewMessages = store => {
   let table = document.querySelector('.table');
   let messages = store.getState().messages;
   if(messages.length > 0){
-    messages.map(message => table.appendChild(getRow(message.text)));
+    messages.map(message => table.appendChild(getRow(message)));
     store.dispatch({type:'FLUSH'});
   }
 };
