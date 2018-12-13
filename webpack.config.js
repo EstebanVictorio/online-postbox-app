@@ -8,7 +8,7 @@ let config = {
     __filename: true
   },
   entry: {
-    index: path.resolve(__dirname,'') + '/index.js'
+    client: path.resolve(__dirname,'') + '/index.js'
   },
   plugins: [
     new HWP({
@@ -23,6 +23,9 @@ let config = {
       Utils: path.resolve(__dirname,'Utils'),
       Store: path.resolve(__dirname,'Store')
     }
+  },
+  output:{
+    publicPath: '/dist/'
   },
   module: {
     rules: [

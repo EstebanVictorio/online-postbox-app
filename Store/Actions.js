@@ -1,13 +1,8 @@
 import {
-  ADD_LATEST,
+  FLUSH,
   APPEND_MESSAGES,
   REQUEST_POSTBOX_ASYNC
 } from './ActionTypes';
-
-const addLatest = messages => ({
-  type: ADD_LATEST,
-  messages: messages
-});
 
 const appendMessages = messages => ({
   type: APPEND_MESSAGES,
@@ -19,8 +14,12 @@ const fetchMessagesAsync = () => ({
   type: REQUEST_POSTBOX_ASYNC
 });
 
+const flushMessages = () => ({
+  type: FLUSH
+});
+
 export {
-  addLatest,
+  flushMessages,
   appendMessages,
   fetchMessagesAsync
 };

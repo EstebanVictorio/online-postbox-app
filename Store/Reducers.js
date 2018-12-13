@@ -1,30 +1,16 @@
-import {ADD_LATEST,APPEND_MESSAGES} from './ActionTypes';
+import {FLUSH,APPEND_MESSAGES} from './ActionTypes';
 const messages = (state = [], action) => {
   switch (action.type) {
     case APPEND_MESSAGES:
-    console.log(action.messages);
-      return [
-        ...state,
-        ...action.messages
-      ];
+      return action.messages;
+    case FLUSH:
+      return [];
     default:
       return state;
   }
 };
 
-const latestMessages = (state = [],action) => {
-  switch (action.type) {
-    case ADD_LATEST:
-      state = action.messages;
-      return state;
-      break;
-    default:
-      return state;
-  }
-}
-
 
 export default {
-  messages,
-  latestMessages
+  messages
 };

@@ -20,11 +20,10 @@ const getRow = (text) => {
 
 const getNewMessages = store => {
   let table = document.querySelector('.table');
-  let allLatestMessages = store.getState().latestMessages;
-  if(allLatestMessages.length > 0){
-    allLatestMessages.map(message => table.appendChild(getRow(message.text)));
-    store.dispatch({type:'ADD_LATEST',messages: []});
-    store.dispatch({type:'APPEND_MESSAGES',messages: allLatestMessages});
+  let messages = store.getState().messages;
+  if(messages.length > 0){
+    messages.map(message => table.appendChild(getRow(message.text)));
+    store.dispatch({type:'FLUSH'});
   }
 };
 
